@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class BuildMethods
 {
+    [UnityEditor.MenuItem("AltTester/AltTester Editor2", false, 80)]
     public static void PreMethod()
     {
         var buildTargetGroup = BuildTargetGroup.Standalone;
@@ -18,6 +19,7 @@ public class BuildMethods
         var instrumentationSettings = new AltInstrumentationSettings();
         AltBuilder.InsertAltInScene("Assets/Scenes/SampleScene.unity", instrumentationSettings);
         var buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.locationPathName = "Test/test.exe";
         buildPlayerOptions.scenes = new string[1] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.options = UnityEditor.BuildOptions.Development | UnityEditor.BuildOptions.IncludeTestAssemblies;
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
