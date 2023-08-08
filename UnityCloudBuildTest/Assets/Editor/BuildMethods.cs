@@ -17,5 +17,11 @@ public class BuildMethods
         }
         var instrumentationSettings = new AltInstrumentationSettings();
         AltBuilder.InsertAltInScene("Assets/Scenes/SampleScene.unity", instrumentationSettings);
+        var buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = new string[1] { "Assets/Scenes/SampleScene.unity" };
+        buildPlayerOptions.options = UnityEditor.BuildOptions.Development | UnityEditor.BuildOptions.IncludeTestAssemblies;
+        buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
+        buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
+        UnityEditor.BuildPipeline.BuildPlayer(buildPlayerOptions);
     }
 }
